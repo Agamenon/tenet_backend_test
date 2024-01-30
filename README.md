@@ -36,11 +36,12 @@ docker run --rm \
 ```
 
 ### Daily usage
-After you are in sync with `origin/dev` Then you can run
+After you are in sync with `origin/main` Then you can run
 ```shell
 vendor/bin/sail up -d
 vendor/bin/sail shell
-php artisan db:seed RoleAndPermissionSeeder
+composer install
+##php artisan db:seed RoleAndPermissionSeeder
 ```
 
 Inside the shell you can run typical artisan commands like:
