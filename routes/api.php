@@ -4,6 +4,7 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerInvoiceController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +27,7 @@ Route::group(['prefix' => 'v1'], function () use ($router) {
         $router->apiResource('customer',CustomerController::class);
         $router->apiResource('customer/{customer}/billing',BillingController::class)->except("destroy");
         $router->get("customer/{customer}/invoice",CustomerInvoiceController::class)->name("customer.invoice");
+
+        $router->get("service",ServiceController::class)->name("service.index");
     });
 });
