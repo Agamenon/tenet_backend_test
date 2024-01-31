@@ -20,6 +20,6 @@ class StorageItem implements InvoiceItemI{
      */
     public function calculateTotal(): string
     {
-        return Money::of($this->billing->service->cost ?? 0, CurrencyTypeEnum::USD)->plus($this->billing->quantity ?? 0)->getAmount();
+        return Money::of($this->billing->service->cost ?? 0, CurrencyTypeEnum::USD)->multipliedBy((int)$this->billing->quantity ?? 0)->getAmount();
     }
 }

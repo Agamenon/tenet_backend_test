@@ -35,7 +35,7 @@ class CalcultateTotalPerItemOnInvoiceTest extends TestCase
         $handler->addItems($itemProxy);
         $handler->addItems($itemTranslation);
 
-       $this->assertEquals("20092.21012", $handler->calculateTotalInvoice());
+       $this->assertEquals("10.15000", $handler->calculateTotalInvoice());
     }
 
     /**

@@ -6,11 +6,11 @@ use App\Enums\CurrencyTypeEnum;
 use App\Enums\ServiceTypeEnum;
 use App\Exceptions\InvoiceItemException;
 use App\Models\Billing;
-use App\Models\Service;
 use App\Services\ItemsTypes\InvoiceItemI;
 use Brick\Money\Money;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 class InvoiceHandler{
 
@@ -67,7 +67,7 @@ class InvoiceHandler{
      */
     public function getInvoiceDetail() : array{
         $grouped = collect($this->items)->map(function($item){
-            return ["service" => $item->billing->service->name, "total" => $item->calculateTotal(), "date" => $item->billing->date->toDateString()];
+            return ["service" => $item->billing->service->name, "total" => $item->calculateTotal(), 'unit' => $item->billing->service->unit, 'cost_per_unit' => $item->billing->service->cost] + Arr::only($item->billing->toArray(),['date','quantity']);
         })->groupBy("service");
 
         return $grouped->toArray();

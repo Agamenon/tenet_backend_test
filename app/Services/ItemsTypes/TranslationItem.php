@@ -20,6 +20,6 @@ class TranslationItem implements InvoiceItemI{
      */
     public function calculateTotal(): string
     {
-        return Money::of($this->billing->service->cost ?? 0, CurrencyTypeEnum::USDSMALL())->plus($this->billing->quantity ?? 0)->getAmount();
+        return Money::of($this->billing->service->cost ?? 0, CurrencyTypeEnum::USDSMALL())->multipliedBy($this->billing->quantity ?? 0)->getAmount();
     }
 }
