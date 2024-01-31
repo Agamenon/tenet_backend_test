@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ServiceTypeEnum;
 use App\Enums\UnitTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,7 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => ServiceTypeEnum::getRandomValue(),
             'unit' => UnitTypeEnum::getRandomValue(),
             'cost' => (float) (fake()->numberBetween(1, 99) . '.1'),
         ];

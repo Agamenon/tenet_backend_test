@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\CurrencyTypeEnum;
+use App\Enums\ServiceTypeEnum;
 use App\Enums\UnitTypeEnum;
 use App\Models\Service;
 use Brick\Money\Currency;
@@ -18,25 +19,25 @@ class ServiceSeeder extends Seeder
     public function run(): void
     {
         Service::firstOrCreate([
-            'name' => "BackOffice",
+            'name' => ServiceTypeEnum::BACKOFFICE,
             'unit' => UnitTypeEnum::MONTH,
             'cost' => Money::of("7.00",CurrencyTypeEnum::USD())->getAmount()
         ]);
 
         Service::firstOrCreate([
-            'name' => "Storage",
+            'name' => ServiceTypeEnum::STORAGE,
             'unit' => UnitTypeEnum::GB,
             'cost' => Money::of("0.03", CurrencyTypeEnum::USD())->getAmount()
         ]);
 
         Service::firstOrCreate([
-            'name' => "Proxy",
+            'name' => ServiceTypeEnum::PROXY,
             'unit' => UnitTypeEnum::MINUTE,
             'cost' => Money::of("0.03", CurrencyTypeEnum::USD())->getAmount()
         ]);
 
         Service::firstOrCreate([
-            'name' => "Speech Translation",
+            'name' => ServiceTypeEnum::TRANSLATION,
             'unit' => UnitTypeEnum::LETTER,
             'cost' => Money::of("0.00003", CurrencyTypeEnum::USDSMALL())->getAmount()
         ]);
