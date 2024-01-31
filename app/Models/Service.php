@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\UnitTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends Model
+class Service extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -17,5 +17,11 @@ class Customer extends Model
      */
     protected $fillable = [
         "name",
+        "unit",
+        "cost"
+    ];
+
+    protected $casts = [
+        'unit' => UnitTypeEnum::class,
     ];
 }
