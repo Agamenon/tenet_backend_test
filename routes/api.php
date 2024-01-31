@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerInvoiceController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,5 +25,6 @@ Route::group(['prefix' => 'v1'], function () use ($router) {
     $router->group(['middleware' => ['auth:sanctum', 'throttle:api']], function () use ($router) {
         $router->apiResource('customer',CustomerController::class);
         $router->apiResource('customer/{customer}/billing',BillingController::class)->except("destroy");
+        $router->get("customer/{customer}/invoice",CustomerInvoiceController::class)->name("customer.invoice");
     });
 });

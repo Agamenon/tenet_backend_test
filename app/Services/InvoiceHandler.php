@@ -61,6 +61,19 @@ class InvoiceHandler{
     }
 
     /**
+     * Detail Invoice
+     *
+     * @return array
+     */
+    public function getInvoiceDetail() : array{
+        $grouped = collect($this->items)->map(function($item){
+            return ["service" => $item->billing->service->name, "total" => $item->calculateTotal(), "date" => $item->billing->date->toDateString()];
+        })->groupBy("service");
+
+        return $grouped->toArray();
+    }
+
+    /**
      * Calculate Total Invoice Amount
      *
      * @return string

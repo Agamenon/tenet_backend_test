@@ -8,7 +8,7 @@ use Brick\Money\Money;
 
 class TranslationItem implements InvoiceItemI{
 
-    public function __construct(protected Billing $billing)
+    public function __construct(public Billing $billing)
     {
 
     }
