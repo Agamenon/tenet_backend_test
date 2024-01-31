@@ -45,7 +45,24 @@ php artisan db:seed UserSeeder
 
 Inside the shell you can run typical artisan commands like:
 ```sh
+php artisan db:seed
 php artisan migrate
+```
+
+### First time set up
+### Run test suite
+And then
+```shell
+vendor/bin/sail shell
+php artisan test
+```
+
+if you want to see a coverage report, run:
+```shell
+vendor/bin/sail shell
+
+export XDEBUG_MODE=coverage
+php artisan test --coverage
 ```
 
 ## License
