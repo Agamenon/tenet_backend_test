@@ -14,7 +14,6 @@ class CustomerControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-
     public function setUp(): void
     {
         parent::setUp();
@@ -50,6 +49,24 @@ class CustomerControllerTest extends TestCase
                 fn (AssertableJson $json) => $json->where('name', $customer->name)
                     ->etc()
             );
+    }
+
+    public static function customerErrorProvider(){
+        return [
+            "null name" => [null],
+            "empty name" => [""],
+            "to large name" => [fake()->text(1000)]
+        ];
+    }
+
+    /**
+     * @dataProvider customerErrorProvider
+     */
+    public function test_customer_create_errors($input): void
+    {
+        $response = $this->postJson(route("customer.store"), ["name" => $input]);
+
+        $response->assertInvalid(['name']);
     }
 
 
