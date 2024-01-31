@@ -35,7 +35,8 @@ class BillingFilter extends ModelFilter
     public function getWhereInColumnFilters(): array
     {
         return [
-            "service_id"
+            "service_id",
+            "customer_id",
         ];
     }
 

@@ -18,4 +18,8 @@ class Customer extends Model
     protected $fillable = [
         "name",
     ];
+
+    public function billings(){
+        return $this->hasMany(Billing::class);
+    }
 }
