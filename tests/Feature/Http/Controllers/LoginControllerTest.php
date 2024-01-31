@@ -17,7 +17,7 @@ class LoginControllerTest extends TestCase
     public function test_login_ok(): void
     {
         $user = User::factory()->create();
-        $this->actingAs($user)->postJson(route("api.user.login"),['email' => $user->email, 'password' => "password"])->assertSuccessful();
+        $this->actingAs($user)->postJson(route("user.login"),['email' => $user->email, 'password' => "password"])->assertSuccessful();
     }
 
     /**
@@ -26,6 +26,6 @@ class LoginControllerTest extends TestCase
     public function test_login_invalid_email(): void
     {
         $user = User::factory()->create();
-        $this->actingAs($user)->postJson(route("api.user.login"),['email' => fake()->word(),'password' => fake()->password()])->assertInvalid(['email']);
+        $this->actingAs($user)->postJson(route("user.login"),['email' => fake()->word(),'password' => fake()->password()])->assertInvalid(['email']);
     }
 }
