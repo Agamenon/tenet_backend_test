@@ -44,6 +44,9 @@ class CustomerInvoiceControllerTest extends TestCase
         $customer->billings()->createMany(Billing::factory(['quantity' => 40, 'service_id' => $proxy->id])->count(2)->make()->toArray());
         $customer->billings()->createMany(Billing::factory(['quantity' => 5000,'service_id' => $translate->id])->count(4)->make()->toArray());
 
+        // Skip this billing
+        $customer->billings()->create(Billing::factory(['quantity' => 5000, 'service_id' => $translate->id, 'date' => now()->subDay(30)->toDateString()])->make()->toArray());
+
         $handler = new InvoiceHandler();
         $handler->addItems($customer->billings()->lastFifteenDays()->get());
 
