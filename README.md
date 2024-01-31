@@ -40,14 +40,12 @@ After you are in sync with `origin/main` Then you can run
 ```shell
 vendor/bin/sail up -d
 vendor/bin/sail shell
-composer install
-##php artisan db:seed RoleAndPermissionSeeder
+php artisan db:seed UserSeeder
 ```
 
 Inside the shell you can run typical artisan commands like:
 ```sh
 php artisan migrate
-php artisan db:seed
 ```
 
 ## License
