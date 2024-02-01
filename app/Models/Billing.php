@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasCustomEventsLogs;
+use App\Models\Traits\LogsActivity;
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Billing extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory, Filterable, HasCustomEventsLogs, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +28,11 @@ class Billing extends Model
     protected $casts = [
         'date' => "date:Y-m-d",
     ];
+
+    protected function getHumanModelName(): string
+    {
+        return 'Billing';
+    }
 
     public function customer(){
         return $this->belongsTo(Customer::class);

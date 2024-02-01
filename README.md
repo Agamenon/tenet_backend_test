@@ -65,6 +65,9 @@ export XDEBUG_MODE=coverage
 php artisan test --coverage
 ```
 
+## Postman Collection
+You can find a Postman collection to import in your Postman Workspace on `doc/
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

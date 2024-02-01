@@ -113,4 +113,21 @@ class CustomerControllerTest extends TestCase
 
         $response->assertSuccessful();
     }
+
+    /**
+     * List Audit Customer
+     *
+     * @return void
+     */
+    public function test_customer_audit_list()
+    {
+
+        $customer = Customer::factory()->make();
+
+        $response = $this->postJson(route("customer.store"), $customer->toArray());
+
+        $response->assertSuccessful();
+
+        $this->getJson(route('customer.audit', $response->json('id')))->assertSuccessful()->assertJsonCount(1, 'data');
+    }
 }

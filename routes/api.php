@@ -25,7 +25,9 @@ Route::group(['prefix' => 'v1'], function () use ($router) {
 
     $router->group(['middleware' => ['auth:sanctum', 'throttle:api']], function () use ($router) {
         $router->apiResource('customer',CustomerController::class);
+        $router->get('customer/{customer}/audit',[CustomerController::class,'audit'])->name('customer.audit');
         $router->apiResource('customer/{customer}/billing',BillingController::class)->except("destroy");
+        $router->get('customer/{customer}/billing/{billing}/audit', [BillingController::class, 'audit'])->name('billing.audit');
         $router->get("customer/{customer}/invoice",CustomerInvoiceController::class)->name("customer.invoice");
 
         $router->get("service",ServiceController::class)->name("service.index");

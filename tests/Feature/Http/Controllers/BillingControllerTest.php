@@ -127,4 +127,21 @@ class BillingControllerTest extends TestCase
                 ->etc()
         );
     }
+
+    /**
+     * List Audit Billing
+     *
+     * @return void
+     */
+    public function test_billing_audit_list()
+    {
+        $customer = Customer::factory()->create();
+        $billing = Billing::factory(['customer_id' => $customer->id])->make();
+
+        $response = $this->postJson(route("billing.store", ["customer" => $customer->id]), $billing->toArray());
+
+        $response->assertSuccessful();
+
+        $this->getJson(route('billing.audit', ["customer" => $customer->id,"billing"=>$response->json('id')]))->assertSuccessful()->assertJsonCount(1, 'data');
+    }
 }

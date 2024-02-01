@@ -57,4 +57,16 @@ class CustomerController extends Controller
 
         return response()->json("",Response::HTTP_NO_CONTENT);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function audit(Customer $customer)
+    {
+        $activities = $customer->activities()->paginate();
+
+        return response()->json($activities);
+    }
 }

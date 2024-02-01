@@ -55,4 +55,17 @@ class BillingController extends Controller
 
         return response()->json(new JsonResource($billing));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function audit(Customer $customer, Billing $billing)
+    {
+        $billing = $customer->billings()->findOrFail($billing->id);
+        $activities = $billing->activities()->paginate();
+
+        return response()->json($activities);
+    }
 }
