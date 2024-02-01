@@ -66,7 +66,7 @@ php artisan test --coverage
 ```
 
 ## Postman Collection
-You can find a Postman collection to import in your Postman Workspace on `doc/
+You can find a Postman collection called `Tenet_Backend.postman_collection` to import in your Postman Workspace on root directory.
 
 ## License
 
