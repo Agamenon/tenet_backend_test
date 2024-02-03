@@ -35,18 +35,19 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-### Daily usage
 After you are in sync with `origin/main` Then you can run
 ```shell
 vendor/bin/sail up -d
 vendor/bin/sail shell
+php artisan migrate --seed
 php artisan db:seed UserSeeder
+php artisan db:seed DemoDataSeeder
 ```
-
+### Daily usage
+After you are in sync with `origin/main` Then you can run
 Inside the shell you can run typical artisan commands like:
 ```sh
-php artisan db:seed
-php artisan migrate
+php artisan migrate --seed
 ```
 
 ### First time set up
